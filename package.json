@@ -1,0 +1,19 @@
+{
+  "name": "branched-discord-bot-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/bot.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brennan-mccreary/branched-discord-bot-v2.git"
+  },
+  "author": "Brennan McCreary",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brennan-mccreary/branched-discord-bot-v2/issues"
+  },
+  "homepage": "https://github.com/brennan-mccreary/branched-discord-bot-v2#readme"
+}
