@@ -7,6 +7,7 @@ const fs = require('fs');
 const client = new Client({ intents: GatewayIntentBits.Guilds });
 
 client.commands = new Collection();
+client.buttons = new Collection();
 client.commandArray = [];
 
 client.color = "";
@@ -23,4 +24,5 @@ for (const folder of functionFolders) {
 
 client.handleEvents();
 client.handleCommands();
+client.handleComponents();
 client.login(DISCORD_BOT_TOKEN);
