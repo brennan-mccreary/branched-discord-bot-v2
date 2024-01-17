@@ -9,7 +9,7 @@ const client = new Client({ intents: GatewayIntentBits.Guilds });
 client.commands = new Collection();
 client.commandArray = [];
 
-client.colour = "";
+client.color = "";
 
 //Get all folders from src/functions then grab files and call functions in js files.
 const functionFolders = fs.readdirSync(`./src/functions`);

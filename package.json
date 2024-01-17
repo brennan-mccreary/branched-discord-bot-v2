@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/brennan-mccreary/branched-discord-bot-v2/issues"
   },
-  "homepage": "https://github.com/brennan-mccreary/branched-discord-bot-v2#readme"
+  "homepage": "https://github.com/brennan-mccreary/branched-discord-bot-v2#readme",
+  "dependencies": {
+    "@discordjs/rest": "^2.2.0",
+    "chalk": "^4.1.2",
+    "discord-api-types": "^0.37.67",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1"
+  }
 }
