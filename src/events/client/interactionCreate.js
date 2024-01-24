@@ -52,8 +52,7 @@ module.exports = {
                 console.error(err);
             }
         }
-        else 
-        if (interaction.type == InteractionType.ModalSubmit) {
+        else if (interaction.type == InteractionType.ModalSubmit) {
             const { modals } = client;
             const { customId } = interaction;
             const modal = modals.get(customId);
@@ -62,6 +61,20 @@ module.exports = {
 
             try {
                 await modal.execute(interaction, client);
+            }
+            catch (err) {
+                console.error(err);
+            }
+        }
+        else if (interaction.isContextMenuCommand()) {
+            const { commands } = client;
+            const { commandName } = interaction;
+            const contextCommand = commands.get(commandName);
+
+            if (!contextCommand) return new Error('There is no code for this context command.');
+
+            try {
+                await contextCommand.execute(interaction, client);
             }
             catch (err) {
                 console.error(err);
