@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/bot.js",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "reloading": "nodemon start"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
     "discord-api-types": "^0.37.67",
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
-    "mongoose": "^8.1.1",
+    "mongoose": "^8.9.0",
+    "nodemon": "^3.1.9",
     "rss-parser": "^3.13.0"
   }
 }
