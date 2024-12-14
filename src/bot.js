@@ -35,3 +35,4 @@ client.login(DISCORD_BOT_TOKEN);
 (async () => {
     await connect(MONGO_DB).catch(console.error);
 })();
+
