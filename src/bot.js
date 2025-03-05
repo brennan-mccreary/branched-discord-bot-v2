@@ -24,8 +24,11 @@ for (const folder of functionFolders) {
   const functionFiles = fs
     .readdirSync(`./src/functions/${folder}`)
     .filter((file) => file.endsWith(".js"));
-  for (const file of functionFiles)
+  for (const file of functionFiles) {
+    console.log(`Function: ${file} has passed through onboarding`)
     require(`./functions/${folder}/${file}`)(client);
+  }
+    
 }
 
 client.handleEvents();
