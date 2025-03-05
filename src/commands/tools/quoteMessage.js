@@ -14,6 +14,6 @@ module.exports = {
             content: `"${interaction.targetMessage.content}" -${interaction.targetMessage.author.globalName} (${formatDate})`
         })
         
-        //console.log(interaction.targetMessage)
+        console.log(interaction.targetMessage)
     }
 }
