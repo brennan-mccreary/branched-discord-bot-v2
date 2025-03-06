@@ -1,12 +1,23 @@
-const chalk = require('chalk');
+const chalk = require("chalk");
 
 module.exports = {
-    name: 'ready',
-    once: true,
-    async execute(client) {
-        setInterval(client.pickPresence, 10000);
-        console.log(chalk.blue(`[Bot Status]: ${client.user.tag} is online`));
+  name: "ready",
+  once: true,
+  async execute(client) {
+    console.log(chalk.cyan(`[Event Notice] [Ready] [Id: ${client.id} online]`));
 
-        // setTimeout(client.checkVideo, 5000)
+    //Presence cycler
+    try {
+      setInterval(client.pickPresence, 10000);
+    } catch (err) {
+      console.log(err);
     }
-}
+
+    //Youtube Video RSS Feed checker
+    try {
+      // setTimeout(client.checkVideo, 5000)
+    } catch (err) {
+      console.log(err);
+    }
+  },
+};

@@ -7,7 +7,15 @@ const { connect } = require("mongoose");
 const fs = require("fs");
 
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.MessageContent,
+    
+  ],
 });
 
 client.commands = new Collection();
@@ -25,10 +33,9 @@ for (const folder of functionFolders) {
     .readdirSync(`./src/functions/${folder}`)
     .filter((file) => file.endsWith(".js"));
   for (const file of functionFiles) {
-    console.log(`Function: ${file} has passed through onboarding`)
+    console.log(`Function: ${file} has passed through onboarding`);
     require(`./functions/${folder}/${file}`)(client);
   }
-    
 }
 
 client.handleEvents();
