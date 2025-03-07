@@ -20,10 +20,12 @@
   "dependencies": {
     "@discordjs/rest": "^2.2.0",
     "@discordjs/voice": "^0.18.0",
+    "@distube/ytdl-core": "^4.16.4",
     "chalk": "^4.1.2",
     "discord-api-types": "^0.37.67",
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
+    "ffmpeg-static": "^5.2.0",
     "mongoose": "^8.9.0",
     "nodemon": "^3.1.9",
     "rss-parser": "^3.13.0"
