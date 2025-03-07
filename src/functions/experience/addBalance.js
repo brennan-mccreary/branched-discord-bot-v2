@@ -1,10 +1,10 @@
 const Balance = require("../../schemas/balance");
 
 module.exports = async (client) => {
-  client.addBalance = async (message, amount) => {
-    if (message.author.bot) return;
+  client.addBalance = async (author, amount) => {
+    if (author.bot) return;
 
-    const storedBalance = await client.fetchBalance(message.author.id);
+    const storedBalance = await client.fetchBalance(author.id);
 
     await Balance.updateOne(
       { _id: storedBalance._id },

@@ -9,7 +9,7 @@ module.exports = {
 
     //Add 10xp to person for sending message
     try {
-      await client.addBalance(message, 10);
+      await client.addBalance(message.author, 10);
     } catch (err) {
       console.log(err);
     }

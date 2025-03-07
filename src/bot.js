@@ -14,7 +14,7 @@ const client = new Client({
     GatewayIntentBits.GuildVoiceStates,
     GatewayIntentBits.GuildMessageReactions,
     GatewayIntentBits.MessageContent,
-    
+
   ],
 });
 
