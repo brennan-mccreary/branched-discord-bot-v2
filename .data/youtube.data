@@ -1,0 +1,33 @@
+{
+    "cookie": {
+        "HSID": "ALZ5Kw6Z8agotEXna",
+        "SSID": "AxhevMUfQya0Dn3RJ",
+        "APISID": "OkgF_WJugxnMBJkb/A3Mxtcr8wBkgw8ngq",
+        "SAPISID": "fmoCdV6K_px5VOaU/A33XMRfnohsLYxMMN",
+        "__Secure-1PAPISID": "fmoCdV6K_px5VOaU/A33XMRfnohsLYxMMN",
+        "__Secure-3PAPISID": "fmoCdV6K_px5VOaU/A33XMRfnohsLYxMMN",
+        "LOGIN_INFO": "AFmmF2swRQIhAO_t-XOlSD67AKvrekXiOxmW-BQhUzSODA6hq04P_ODyAiA6qjhJneP8bJNjojZGnAsT2vwO8KKnkJTHi0cU5_FbDw:QUQ3MjNmeHlWVENlbkxMckYxNGhtQUg0N1Q3bjYwbnRWV29pczBad0lQYTh3UXNwNGJqb0dWay1YYVI3QXIyUU5TOUxkdlQtUWt3T2FBVVoyZGJ4RHlyOUl3WXViakZrLXlKX3RKM0lmZUIxNUtjdWp3bEkzZkppQ3NfeklXRXFxNEsycFFqMTlQdHk1WHBuX0lWRllIeEptOGJIcW1Qek93",
+        "VISITOR_INFO1_LIVE": "IWLpFTzgrq0",
+        "VISITOR_PRIVACY_METADATA": "CgJVUxIEGgAgFg%3D%3D",
+        "YSC": "TMD4CFap6Ik",
+        "SID": "g.a000ughoWjnZ0UNrZCnOAma9wjDYmbpJIT9C-bd_BIxUsxl16a7OBlLRpJ1WokM73KUGtmAmgQACgYKAY4SARcSFQHGX2Mi-uP9pSoULJ1u6x0F2LsiThoVAUF8yKrPr6egpnKDwfClU3YbvY6l0076",
+        "__Secure-1PSID": "g.a000ughoWjnZ0UNrZCnOAma9wjDYmbpJIT9C-bd_BIxUsxl16a7OyEuxOTc8kqy4HOBFITphOAACgYKAYYSARcSFQHGX2MiqTefxPj8KXm4n1gfE-dbrRoVAUF8yKorJIum2pkKcTP6qkSJl4x60076",
+        "__Secure-3PSID": "g.a000ughoWjnZ0UNrZCnOAma9wjDYmbpJIT9C-bd_BIxUsxl16a7OySK8zA-fZkAWsqPWxkAUGgACgYKAYcSARcSFQHGX2MilZPFAmkYnLnVpHpT12-q8xoVAUF8yKoYaenWhEdeht2g48ErV55a0076",
+        "PREF": "f6=40000000&f7=4100&tz=America.New_York",
+        "__Secure-ROLLOUT_TOKEN": "CPadk4bgtNHyZRDynvuKlPmLAxiy272LlPmLAw%3D%3D",
+        "__Secure-1PSIDTS": "sidts-CjEBEJ3XV3SLsbfQnjc4uaZkGM4mhbojY_7NcztlpBylnqQh_KVA5tqHBcVwXNiPYgluEAA",
+        "__Secure-3PSIDTS": "sidts-CjEBEJ3XV3SLsbfQnjc4uaZkGM4mhbojY_7NcztlpBylnqQh_KVA5tqHBcVwXNiPYgluEAA",
+        "SIDCC": "AKEyXzVA1lxruBvQmbH2ZMTJcngQuFOela68jeapNZ9J_iBRkbV87HSu5HMIyn6_HjbBn9OPZw",
+        "__Secure-1PSIDCC": "AKEyXzWZMnp69XHNfbkRGKMy0oLD_N_L8ZW_NEx5NY2geJ1zkc-clNRY1WTi8-7o0FU7IcghdZM",
+        "__Secure-3PSIDCC": "AKEyXzVKvV7m85zk5RngMb6kjpYGeR_zfrVHaGNCNZBMXoR9dHPQAaFNcWgotRG7ksrLx1MO59s",
+        "Domain": ".youtube.com",
+        "Expires": "Thu, 04-Sep-2025 21:11:22 GMT",
+        "Path": "/",
+        "SameSite": "none",
+        "expires": "Sun, 08-Mar-2026 21:11:22 GMT",
+        "path": "/",
+        "domain": ".youtube.com",
+        "priority": "high"
+    },
+    "file": true
+}
