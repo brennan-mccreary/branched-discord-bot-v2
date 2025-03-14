@@ -6,6 +6,7 @@ const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const { connect } = require("mongoose");
 const fs = require("fs");
 
+//New Discord App Client
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -14,10 +15,10 @@ const client = new Client({
     GatewayIntentBits.GuildVoiceStates,
     GatewayIntentBits.GuildMessageReactions,
     GatewayIntentBits.MessageContent,
-
   ],
 });
 
+//Declare collections for discord app
 client.commands = new Collection();
 client.buttons = new Collection();
 client.selectMenus = new Collection();
@@ -38,11 +39,13 @@ for (const folder of functionFolders) {
   }
 }
 
+//Grab event handlers, commands, and components
 client.handleEvents();
 client.handleCommands();
 client.handleComponents();
 client.login(DISCORD_BOT_TOKEN);
 
+//Connect DB
 (async () => {
   await connect(MONGO_DB).catch(console.error);
 })();
