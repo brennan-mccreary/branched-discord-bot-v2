@@ -3,6 +3,7 @@ const {
   ChannelType,
   GuildScheduledEventPrivacyLevel,
   GuildScheduledEventEntityType,
+  MessageFlags,
 } = require("discord.js");
 
 module.exports = {
@@ -23,6 +24,12 @@ module.exports = {
                 .setDescription("Select a template")
                 .setRequired(true)
                 .setAutocomplete(true)
+            )
+            .addIntegerOption((option) =>
+              option
+                .setName("timestamp")
+                .setDescription("Unix timestamp for event start")
+                .setRequired(false)
             )
         )
         .addSubcommand((subcommand) =>
@@ -72,7 +79,7 @@ module.exports = {
     //Autocomplete switch for subcommand field
     switch (subcommand) {
       case "schedule":
-        const templates = await client.getEventTemplates();
+        const templates = await client.getEventTemplates(interaction.guildId);
 
         if (templates.length > 0) {
           templates.map((e) => {
@@ -103,45 +110,10 @@ module.exports = {
       switch (group) {
         case "template":
           if (subcommand === "create") {
-            //Get variables
-            const name = interaction.options.getString("name");
-            const channel = interaction.options.getChannel("location");
-            const topic = interaction.options.getString("topic");
-            const description =
-              interaction.options.getString("description") ?? "";
-            const image = interaction.options.getAttachment("image") ?? "";
-
-            //Post template to db
-            await client.addEventTemplate(
-              name,
-              channel,
-              topic,
-              description,
-              image
-            );
-
-            await interaction.reply({
-              content: `# Template Created\n## Name: ${name}\n### Topic: ${topic}`,
-            });
+            client.eventTemplateCreate(interaction, client);
           } else if (subcommand === "schedule") {
-            const name = await interaction.options.getString("template");
-            const template = await client.getEventTemplateByName(name);
-            if (template) {
-                const event = await interaction.guild.scheduledEvents.create({
-                    name: template.topic,
-                    description: template?.description,
-                    scheduledStartTime: new Date(Date.now() + 3600000),
-                    privacyLevel: GuildScheduledEventPrivacyLevel.GuildOnly,
-                    entityType: GuildScheduledEventEntityType.Voice,
-                    channel: template.channel,
-                    image: template?.cover_image,
-                  });
-                  return await interaction.reply(`✅ Event created: ${event.url}`);
-            }
-            await interaction.reply(`I ran into some trouble creating that event...`);
+            client.eventTemplateSchedule(interaction, client);
           }
-          break;
-        case "":
           break;
         default:
           break;

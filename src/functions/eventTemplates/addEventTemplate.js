@@ -3,7 +3,7 @@ const { Types } = require("mongoose");
 const chalk = require("chalk");
 
 module.exports = async (client) => {
-  client.addEventTemplate = async (name, channel, topic, description, cover_image) => {
+  client.addEventTemplate = async (name, channel, topic, description, cover_image, guild) => {
     const existing = await EventTemplate.find({ name: name });
     if (existing.length > 0) return;
 
@@ -13,14 +13,18 @@ module.exports = async (client) => {
       channel: channel.id,
       topic: topic,
       description: description ?? "",
-      cover_image: cover_image.url ?? ""
+      cover_image: cover_image.url ?? "",
+      guild: guild
     });
 
     await template
       .save()
       .then(async (res) => {
         console.log(chalk.blue(`[Event Template Created] Template: ${res._id}`));
+        
       })
       .catch(console.error);
+
+    return template;
   };
 };
