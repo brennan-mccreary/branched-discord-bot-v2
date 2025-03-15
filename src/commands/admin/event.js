@@ -4,12 +4,15 @@ const {
   GuildScheduledEventPrivacyLevel,
   GuildScheduledEventEntityType,
   MessageFlags,
+  PermissionFlagsBits,
+  PermissionsBitField,
 } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("event")
     .setDescription("Create events")
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addSubcommandGroup((group) =>
       group
         .setName("template")
