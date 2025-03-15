@@ -14,6 +14,7 @@ module.exports = {
       group
         .setName("template")
         .setDescription("Event template interactions")
+        //Schedule
         .addSubcommand((subcommand) =>
           subcommand
             .setName("schedule")
@@ -32,6 +33,7 @@ module.exports = {
                 .setRequired(false)
             )
         )
+        //Create
         .addSubcommand((subcommand) =>
           subcommand
             .setName("create")
@@ -68,17 +70,31 @@ module.exports = {
                 .setRequired(false)
             )
         )
+        //Delete
+        .addSubcommand((subcommand) =>
+          subcommand
+            .setName("delete")
+            .setDescription("Delete an event template")
+            .addStringOption((option) =>
+              option
+                .setName("name")
+                .setDescription("Name of template")
+                .setRequired(true)
+                .setAutocomplete(true)
+            )
+        )
     ),
 
   async autocomplete(interaction, client) {
     //Get typed value and subcommand
     const focusedValue = interaction.options.getFocused();
-    const subcommand = interaction.options._subcommand;
+    const subcommand = interaction.options.getSubcommand();
     let choices = [];
 
     //Autocomplete switch for subcommand field
     switch (subcommand) {
       case "schedule":
+      case "delete":
         const templates = await client.getEventTemplates(interaction.guildId);
 
         if (templates.length > 0) {
@@ -113,6 +129,8 @@ module.exports = {
             client.eventTemplateCreate(interaction, client);
           } else if (subcommand === "schedule") {
             client.eventTemplateSchedule(interaction, client);
+          } else if (subcommand === "delete") {
+            client.eventTemplateDelete(interaction, client);
           }
           break;
         default:
