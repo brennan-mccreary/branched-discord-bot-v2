@@ -29,6 +29,12 @@ module.exports = {
                 .setRequired(true)
                 .setAutocomplete(true)
             )
+            .addStringOption((option) =>
+              option
+                .setName("description")
+                .setDescription("Add additional information to the event description")
+                .setRequired(false)
+            )
             .addIntegerOption((option) =>
               option
                 .setName("timestamp")

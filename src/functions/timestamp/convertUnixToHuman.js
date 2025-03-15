@@ -7,7 +7,7 @@ module.exports = async (client) => {
 
     //Reply
     await interaction.reply({
-        content: `Timestamps:\n**Date:** __${date}__\n**Date** (localized): __${date.toLocaleDateString()}__`,
+        content: `Timestamps:\n**Date:** __${date}__\n**Date** (localized): __${date.toLocaleString()}__`,
       });
   };
 };
