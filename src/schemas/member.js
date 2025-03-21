@@ -3,8 +3,9 @@ const memberSchema = new Schema({
   _id: Schema.Types.ObjectId,
   userId: { type: String, required: true, unique: true },
   birthday: {
-    date: { type: Date, required: false },
-    isRecognized: { type: Boolean, required: false },
+    month: { type: Number, required: false, min: 1, max: 12 },
+    day: { type: Number, required: false, min: 1, max: 31 }, 
+    isRecognized: { type: Boolean },
   },
   balance: { type: Number, default: 0, required: true },
 });

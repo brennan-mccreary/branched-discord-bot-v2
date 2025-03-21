@@ -1,11 +1,6 @@
 const {
   SlashCommandBuilder,
-  ChannelType,
-  GuildScheduledEventPrivacyLevel,
-  GuildScheduledEventEntityType,
-  MessageFlags,
   PermissionFlagsBits,
-  PermissionsBitField,
 } = require("discord.js");
 
 module.exports = {

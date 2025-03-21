@@ -1,11 +1,7 @@
 const {
   SlashCommandBuilder,
   ChannelType,
-  GuildScheduledEventPrivacyLevel,
-  GuildScheduledEventEntityType,
-  MessageFlags,
   PermissionFlagsBits,
-  PermissionsBitField,
 } = require("discord.js");
 
 module.exports = {
@@ -32,7 +28,9 @@ module.exports = {
             .addStringOption((option) =>
               option
                 .setName("description")
-                .setDescription("Add additional information to the event description")
+                .setDescription(
+                  "Add additional information to the event description"
+                )
                 .setRequired(false)
             )
             .addIntegerOption((option) =>

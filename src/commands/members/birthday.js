@@ -39,8 +39,8 @@ module.exports = {
       "July",
       "August",
       "September",
-      "October",
-      "November",
+      "October", 
+      "November", 
       "December",
     ];
     const filtered = choices.filter((choice) =>
@@ -71,6 +71,7 @@ module.exports = {
       }
 
       //Update user in db
+      client.setMemberBirthday(user, monthInfo.month, day, isRecognized);
 
       //Generate embed from custom component ref
       const embed = new EmbedBuilder()
