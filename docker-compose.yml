@@ -1,0 +1,27 @@
+services:
+  # Mongodb service
+  mongo_db:
+    container_name: db_container
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+
+  # Node api service
+  api:
+    container_name: discord-bot
+    build: .
+    ports:
+      # local->container
+      - 4000:3000
+    environment:
+      DISCORD_BOT_TOKEN: 
+      PORT: 3000
+      MONGO_DB: mongodb://mongo_db:27017
+      DB_NAME: mongo_db
+      DEBUG: FALSE
+    depends_on: 
+      - mongo_db
+
+volumes:
+  mongo_data: {}
