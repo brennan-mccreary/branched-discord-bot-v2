@@ -2,7 +2,7 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const fs = require("fs");
 const chalk = require("chalk");
-const Guild = require("../../schemas/guild")
+const Guild = require("../../schemas/guild");
 
 module.exports = (client) => {
   client.handleCommands = async () => {
@@ -33,22 +33,24 @@ module.exports = (client) => {
     );
 
     try {
-      console.log(chalk.blue("Started refreshing application (/) commands."));
-
+      //For global level commands use:
       // await rest.put(Routes.applicationCommands(clientId), {
       //   body: client.commandArray,
       // });
 
-      //For single guild use:
+      //For guild level commands use:
       const guilds = await Guild.find();
-
-      for (const guild of guilds) {
-        await rest.put(Routes.applicationGuildCommands(clientId, guild.guildId), {
-          body: client.commandArray,
-        });
-        console.log(`[Guild]: ${guild.guildId}`)
-      }
       
+      console.log(chalk.blue("Started refreshing application (/) commands."));
+      for (const guild of guilds) {
+        await rest.put(
+          Routes.applicationGuildCommands(clientId, guild.guildId),
+          {
+            body: client.commandArray,
+          }
+        );
+        console.log(`[Guild]: ${guild.guildId}`);
+      }
 
       console.log(
         chalk.green("Successfully reloaded application (/) commands.")
