@@ -2,7 +2,7 @@ const chalk = require("chalk");
 
 module.exports = {
   name: "messageReactionAdd",
-  async execute(reaction, user, client) {
+  async execute(reaction, user, x, client) {
     console.log(
       chalk.cyan(`[Event Notice] [Message Reaction Add] [Id: ${reaction.message.id}]`)
     );

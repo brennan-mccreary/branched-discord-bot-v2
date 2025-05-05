@@ -5,11 +5,13 @@ const { DISCORD_BOT_TOKEN } = process.env;
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const { connect } = require("mongoose");
 const fs = require("fs");
+const twitch = require("./twitch/twitch-bot")
 
 //New Discord App Client
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildPresences,
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildVoiceStates,
@@ -49,3 +51,6 @@ client.login(DISCORD_BOT_TOKEN);
 (async () => {
   await connect(MONGO_DB).catch(console.error);
 })();
+
+//Start twitch listener server
+twitch()
