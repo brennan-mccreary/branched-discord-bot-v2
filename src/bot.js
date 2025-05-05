@@ -5,7 +5,8 @@ const { DISCORD_BOT_TOKEN } = process.env;
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const { connect } = require("mongoose");
 const fs = require("fs");
-const twitch = require("./twitch/twitch-bot")
+const twitch = require("./twitch/twitch-bot");
+const sendLiveNotification = require("./functions/twitch-interactions/sendLiveNotification");
 
 //New Discord App Client
 const client = new Client({
@@ -53,4 +54,4 @@ client.login(DISCORD_BOT_TOKEN);
 })();
 
 //Start twitch listener server
-twitch()
+twitch(client)
