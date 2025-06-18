@@ -20,7 +20,7 @@ const MESSAGE_TYPE_REVOCATION = "revocation";
 // Prepend this string to the HMAC that's created from the message
 const HMAC_PREFIX = "sha256=";
 
-const startTwitchServer = () => {
+const startTwitchServer = (client) => {
   app.use(express.json());
 
   app.post("/callback", async (req, res) => {
@@ -52,6 +52,9 @@ const startTwitchServer = () => {
     } else if (messageType === "revocation") {
       console.log("⚠️ Subscription revoked:", req.body);
       res.sendStatus(204);
+
+      const channel = "1070892446478782526";
+      client.sendLiveNotification(channel, res.broadcaster_user_id);
     } else {
       console.log("ℹ️ Unknown EventSub message type");
       res.sendStatus(200);
@@ -59,7 +62,7 @@ const startTwitchServer = () => {
   });
 
   app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Twitch app listening`);
   });
 
   function getSecret() {

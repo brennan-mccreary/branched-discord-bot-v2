@@ -36,7 +36,7 @@ module.exports = (client) => {
     ];
 
     // const option = Math.floor(Math.random() * options.length);
-    const option = 0;
+    const option = 1;
 
     client.user.setPresence({
       activities: [
@@ -46,9 +46,9 @@ module.exports = (client) => {
           url: options[option]?.url ,
         },
         {
-            name: options[5]?.text ,
-            type: options[5].type ,
-            url: options[5]?.url ,
+            name: options[1]?.text ,
+            type: options[1].type ,
+            url: options[1]?.url ,
           },
       ],
       status: options[option].status,

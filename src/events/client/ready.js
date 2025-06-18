@@ -5,8 +5,8 @@ module.exports = {
   name: "ready",
   once: true,
   async execute(client) {
-    console.log(chalk.cyan(`[Event Notice] [Ready] [Id: ${client.id} online]`));
-  
+    console.log(chalk.cyan(`[Event Notice] [Ready] [${client.user.username} online]`));
+
     //Birthday check
     try {
       cron.schedule("0 19 * * *", client.birthdayCheck)

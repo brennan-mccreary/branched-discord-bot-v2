@@ -17,23 +17,33 @@ module.exports = {
       // User joins a voice channel
       if (!voiceState.channelId && newVoiceState.channelId) {
         voiceTimes.set(userId, Date.now());
+        console.log(`[${userId}] User joined chat`)
       }
 
       console.log(voiceTimes)
       // User leaves a voice channel
       if (voiceState.channelId && !newVoiceState.channelId) {
-        console.log("voiceTimes")
+        console.log(`[${userId}] User left chat`)
         console.log(voiceTimes)
+
+        //Check if user in in map
         if (voiceTimes.has(userId)) {
-          console.log(voiceTimes)
+          //Fetch join time from map and calculate duration
           const joinTime = voiceTimes.get(userId);
           const timeSpent = Math.floor((Date.now() - joinTime) / 60000); // Minutes spent
+
+          //Remove user from map
           voiceTimes.delete(userId);
 
           // Award XP (adjust values as needed)
-          const xpEarned = timeSpent * 10; // Example: 10 XP per minute
-          console.log(timeSpent * 10)
-          await client.addBalance(voiceState.id, xpEarned);
+          const xpEarned = Math.floor(timeSpent * 0.5);
+          
+          //Resolve user id to user object
+          const user = await client.users.fetch(voiceState.id)
+
+          //Add balance to user
+          const res = await client.addBalance(user, xpEarned);
+          console.log(res)
         }
       }
     } catch (err) {
