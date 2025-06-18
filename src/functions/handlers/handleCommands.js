@@ -34,7 +34,7 @@ module.exports = (client) => {
     try {
       const { DEV_MODE_ENABLED } = process.env;
 
-      if (DEV_MODE_ENABLED) {
+      if (DEV_MODE_ENABLED === "TRUE") {
         console.log(chalk.bgCyan("[DEV MODE ENABLED]"));
         const { DEV_GUILD_ID } = process.env;
 
