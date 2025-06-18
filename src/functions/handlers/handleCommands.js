@@ -26,35 +26,52 @@ module.exports = (client) => {
     }
 
     const clientId = "1077326128374628423";
-    // const guildId = "1121179513947181160";
 
     const rest = new REST({ version: "9" }).setToken(
       process.env.DISCORD_BOT_TOKEN
     );
 
     try {
-      //For global level commands use:
-      // await rest.put(Routes.applicationCommands(clientId), {
-      //   body: client.commandArray,
-      // });
+      const { DEV_MODE_ENABLED } = process.env;
 
-      //For guild level commands use:
-      const guilds = await Guild.find();
-      
-      console.log(chalk.blue("Started refreshing application (/) commands."));
-      for (const guild of guilds) {
+      if (DEV_MODE_ENABLED) {
+        console.log(chalk.bgCyan("[DEV MODE ENABLED]"));
+        const { DEV_GUILD_ID } = process.env;
+
+        console.log(chalk.blue("Started refreshing application (/) commands."));
         await rest.put(
-          Routes.applicationGuildCommands(clientId, guild.guildId),
+          Routes.applicationGuildCommands(clientId, DEV_GUILD_ID),
           {
             body: client.commandArray,
           }
         );
-        console.log(`[Guild]: ${guild.guildId}`);
-      }
+        console.log(`[Guild]: ${DEV_GUILD_ID}`);
+        console.log(
+          chalk.green("Successfully reloaded application (/) commands.")
+        );
+      } else {
+        //For guild level commands use:
+        const guilds = await Guild.find();
 
-      console.log(
-        chalk.green("Successfully reloaded application (/) commands.")
-      );
+        console.log(chalk.blue("Started refreshing application (/) commands."));
+        for (const guild of guilds) {
+          await rest.put(
+            Routes.applicationGuildCommands(clientId, guild.guildId),
+            {
+              body: client.commandArray,
+            }
+          );
+          console.log(`[Guild]: ${guild.guildId}`);
+        }
+
+        console.log(
+          chalk.green("Successfully reloaded application (/) commands.")
+        );
+        //For global level commands use:
+        // await rest.put(Routes.applicationCommands(clientId), {
+        //   body: client.commandArray,
+        // });
+      }
     } catch (error) {
       console.error(error);
     }
