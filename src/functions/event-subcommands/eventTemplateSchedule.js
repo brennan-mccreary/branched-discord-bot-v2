@@ -1,10 +1,11 @@
 const {
     GuildScheduledEventPrivacyLevel,
     GuildScheduledEventEntityType,
+    ChannelType
   } = require("discord.js");
 
 module.exports = async (client) => {
-  client.eventTemplateSchedule = async (interaction, client) => {
+  client.eventTemplateSchedule = async (interaction, client, isVoice) => {
     //Get name from command option, template from DB, and timestamp option or assign default
     //Default timestamp for event is +1 hour from command.
     const name = await interaction.options.getString("template");
@@ -13,6 +14,16 @@ module.exports = async (client) => {
     const timestamp =
       (await interaction.options.getInteger("timestamp")) ??
       Date.now() + 3600000;
+    const channelData = guild.channels.cache.get(template.channel);
+
+
+    //Check voice channel type
+    var channelType;
+    if(channelData.type === ChannelType.GuildVoice) {
+      channelType = GuildScheduledEventEntityType.Voice
+    } else if (channelData.type === ChannelType.GuildStageVoice) {
+      channelType = GuildScheduledEventEntityType.StageInstance
+    }
 
     //Create event 
     if (template) {
@@ -22,7 +33,7 @@ module.exports = async (client) => {
         scheduledStartTime: new Date(timestamp),
         scheduledEndTime: new Date(timestamp + 3600000),
         privacyLevel: GuildScheduledEventPrivacyLevel.GuildOnly,
-        entityType: GuildScheduledEventEntityType.Voice,
+        entityType: channelType,
         channel: template.channel,
         image: template?.cover_image,
       });
