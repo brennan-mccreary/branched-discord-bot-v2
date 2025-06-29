@@ -14,14 +14,14 @@ module.exports = async (client) => {
     const timestamp =
       (await interaction.options.getInteger("timestamp")) ??
       Date.now() + 3600000;
-    
+    const channelData = interaction.guild.channels.cache.get(template.channel);
 
 
     //Check voice channel type
     var channelType;
-    if(channel.type === ChannelType.GuildVoice) {
+    if(channelData.type === ChannelType.GuildVoice) {
       channelType = GuildScheduledEventEntityType.Voice
-    } else if (channel.type === ChannelType.GuildStageVoice) {
+    } else if (channelData.type === ChannelType.GuildStageVoice) {
       channelType = GuildScheduledEventEntityType.StageInstance
     }
 
