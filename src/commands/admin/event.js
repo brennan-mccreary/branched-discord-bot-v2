@@ -56,7 +56,7 @@ module.exports = {
                 .setName("location")
                 .setDescription("Event channel location")
                 .setRequired(true)
-                .addChannelTypes(ChannelType.GuildVoice)
+                .addChannelTypes(ChannelType.GuildVoice, ChannelType.GuildStageVoice)
             )
             .addStringOption((option) =>
               option
