@@ -12,7 +12,7 @@ module.exports = {
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction, client) {
     try {
-      const votes = await client.fetchVotes(10);
+      const votes = await client.fetchVotes(3);
 
       const embed = new EmbedBuilder()
         .setTitle("📊 Clip Voting Results")

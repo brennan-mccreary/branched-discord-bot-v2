@@ -6,7 +6,7 @@ module.exports = async (client) => {
     try {
       const votes = await ClipVote.aggregate([
         { $sort: { votes: -1 } },
-        { $limit: limit ?? 50 },
+        { $limit: limit},
       ]);
       return votes;
     } catch (err) {
