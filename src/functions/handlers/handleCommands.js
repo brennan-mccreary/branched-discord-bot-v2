@@ -25,11 +25,20 @@ module.exports = (client) => {
       }
     }
 
+    try {
+      await client.unloadGlobalCommands()
+      await client.unloadCommandsFromGuild()
+    } catch (err) {
+      console.error(err)
+    }
+
     const clientId = "1077326128374628423";
 
     const rest = new REST({ version: "9" }).setToken(
       process.env.DISCORD_BOT_TOKEN
     );
+
+
 
     try {
       const { DEV_MODE_ENABLED } = process.env;
