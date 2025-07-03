@@ -25,12 +25,12 @@ module.exports = (client) => {
       }
     }
 
-    try {
-      await client.unloadGlobalCommands()
-      //await client.unloadCommandsFromGuild()
-    } catch (err) {
-      console.error(err)
-    }
+    // try {
+    //   await client.unloadGlobalCommands()
+    //   //await client.unloadCommandsFromGuild()
+    // } catch (err) {
+    //   console.error(err)
+    // }
 
     const clientId = "1077326128374628423";
 
@@ -64,7 +64,7 @@ module.exports = (client) => {
 
         console.log(chalk.blue("Started refreshing application (/) commands."));
         for (const guild of guilds) {
-          await client.unloadCommandsFromGuild(guild.guildId)
+          // await client.unloadCommandsFromGuild(guild.guildId)
           await rest.put(
             Routes.applicationGuildCommands(clientId, guild.guildId),
             {
