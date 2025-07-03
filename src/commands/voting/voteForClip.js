@@ -9,7 +9,8 @@ const {
 module.exports = {
   data: new ContextMenuCommandBuilder()
     .setName("Cast Vote")
-    .setType(ApplicationCommandType.Message),
+    .setType(ApplicationCommandType.Message)
+    .setDefaultMemberPermissions(null),
   async execute(interaction, client) {
     //Channel restriction
     try {
