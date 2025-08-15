@@ -7,7 +7,9 @@ const guildSchema = new Schema({
     channels: {
         live: {type: String, required: false },
         logs: {type: String, required: false },
-        birthdays: {type: String, required: false }
+        birthdays: {type: String, required: false },
+        interactiveVoice: {type: String, required: false },
+        voting: {type: String, required: false },
     }
 });
 

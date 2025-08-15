@@ -7,6 +7,10 @@ const memberSchema = new Schema({
     day: { type: Number, required: false, min: 1, max: 31 }, 
     isRecognized: { type: Boolean },
   },
+  moderation: {
+    comments: [{ type: Object, required: false }],
+    strikes: { type: Number, required: true, default: 0 },
+  },
   balance: { type: Number, default: 0, required: true },
 });
 
