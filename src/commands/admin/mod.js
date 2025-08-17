@@ -54,6 +54,33 @@ module.exports = {
                 .setRequired(true)
             )
         )
+    )
+    .addSubcommandGroup((group) =>
+      group
+        .setName("strike")
+        .setDescription("Manage user strikes")
+        .addSubcommand((sub) =>
+          sub
+            .setName("add")
+            .setDescription("Add a strike to a user")
+            .addUserOption((opt) =>
+              opt
+                .setName("user")
+                .setDescription("User to strike")
+                .setRequired(true)
+            )
+        )
+        .addSubcommand((sub) =>
+          sub
+            .setName("view")
+            .setDescription("View a user's strikes")
+            .addUserOption((opt) =>
+              opt
+                .setName("user")
+                .setDescription("User to view strikes for")
+                .setRequired(true)
+            )
+        )
     ),
   async execute(interaction, client) {
     try {
@@ -72,10 +99,16 @@ module.exports = {
             client.removeModComment(interaction, client);
           }
           break;
+        case "strike":
+          if (subcommand === "add") {
+            client.addModStrike(interaction, client);
+          } else if (subcommand === "view") {
+            client.viewModStrikes(interaction, client);
+          }
+          break;
         default:
           break;
       }
-
     } catch (err) {
       console.error(err);
     }

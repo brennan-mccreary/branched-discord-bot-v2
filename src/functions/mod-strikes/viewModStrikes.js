@@ -2,7 +2,7 @@ const Member = require("../../schemas/member");
 const { MessageFlags, EmbedBuilder } = require("discord.js");
 
 module.exports = async (client) => {
-  client.viewModComments = async (interaction, client) => {
+  client.viewModStrikes = async (interaction, client) => {
     try {
       //Find member
       const member = await Member.findOne({
@@ -10,24 +10,17 @@ module.exports = async (client) => {
       });
 
       //Extract comments
-      const comments = member.moderation.comments;
+      const strikes = member.moderation.strikes;
 
       //Build embed
-      const embed = new EmbedBuilder()
-        .setTitle(`Moderator Comments`)
-        .addFields(
-          comments.map((el, i) => {
-            return {
-              name: `Comment [${i}] - ${el.addedBy}`,
-              value: `"${el.text}"`,
-            };
-          })
-        )
-        .setFooter({ text: `Total comments: ${comments.length}` });
+      const embed = new EmbedBuilder().setTitle(`Moderator Strikes`).addFields({
+        name: `Strikes`,
+        value: `${strikes}`,
+      });
 
       //Reply
       return interaction.reply({
-        content: `Displaying Comments for ${member.userId}`,
+        content: `Displaying Strikes for ${member.userId}`,
         embeds: [embed],
         flags: MessageFlags.Ephemeral,
       });

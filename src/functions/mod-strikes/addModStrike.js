@@ -2,22 +2,14 @@ const Member = require("../../schemas/member");
 const { MessageFlags } = require("discord.js");
 
 module.exports = async (client) => {
-  client.addModComment = async (interaction, client) => {
+  client.addModStrike = async (interaction, client) => {
     try {
       //Find member and update
-      const executor = interaction.user.id;
-      const date = new Date();
-      const comment = {
-        text: interaction.options.getString("comment"),
-        timestamp: date.getTime(),
-        addedBy: executor,
-      };
-
       const member = await Member.findOneAndUpdate(
         {
           userId: interaction.options.getUser("user").id,
         },
-        { $push: { "moderation.comments": comment } },
+        { $inc: { "moderation.strikes": 1 } },
         { new: true, upsert: true }
       );
 
@@ -26,7 +18,7 @@ module.exports = async (client) => {
       //
 
       return interaction.reply({
-        content: `✅ Comment added.`,
+        content: `✅ Strike issued.`,
         flags: MessageFlags.Ephemeral,
       });
     } catch (err) {
