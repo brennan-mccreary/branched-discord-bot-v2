@@ -1,5 +1,6 @@
 const chalk = require("chalk");
 const voiceTimes = new Map();
+const { ChannelType } = require("discord.js");
 
 module.exports = {
   name: "voiceStateUpdate",
@@ -10,6 +11,31 @@ module.exports = {
       )
     );
 
+    //Variable voice channel handler
+    try {
+      //When user joins or changes voice channel
+      if (newVoiceState.channelId) {
+        //Check if channel is variable voice
+        const isVariableVoice = await client.checkForVariableVoiceChannel(
+          newVoiceState.channelId,
+          voiceState.guild,
+          client
+        );
+
+        //Resolve state
+        if (isVariableVoice == true) {
+          client.createTemporaryVoiceChannel(newVoiceState, client);
+        }
+      }
+
+      //Auto remove temp vc's
+      if (voiceState.channelId) {
+       await client.removeTemporaryVoiceChannel(voiceState, client);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
     //Time earned XP
     try {
       const userId = newVoiceState.id;
@@ -17,14 +43,14 @@ module.exports = {
       // User joins a voice channel
       if (!voiceState.channelId && newVoiceState.channelId) {
         voiceTimes.set(userId, Date.now());
-        console.log(`[${userId}] User joined chat`)
+        console.log(`[${userId}] User joined chat`);
       }
 
-      console.log(voiceTimes)
+      console.log(voiceTimes);
       // User leaves a voice channel
       if (voiceState.channelId && !newVoiceState.channelId) {
-        console.log(`[${userId}] User left chat`)
-        console.log(voiceTimes)
+        console.log(`[${userId}] User left chat`);
+        console.log(voiceTimes);
 
         //Check if user in in map
         if (voiceTimes.has(userId)) {
@@ -37,13 +63,13 @@ module.exports = {
 
           // Award XP (adjust values as needed)
           const xpEarned = Math.floor(timeSpent * 0.5);
-          
+
           //Resolve user id to user object
-          const user = await client.users.fetch(voiceState.id)
+          const user = await client.users.fetch(voiceState.id);
 
           //Add balance to user
           const res = await client.addBalance(user, xpEarned);
-          console.log(res)
+          console.log(res);
         }
       }
     } catch (err) {
