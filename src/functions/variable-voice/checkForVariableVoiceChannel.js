@@ -1,6 +1,4 @@
-const guild = require("../../schemas/guild");
 const Guild = require("../../schemas/guild");
-const { MessageFlags } = require("discord.js");
 
 module.exports = async (client) => {
   client.checkForVariableVoiceChannel = async (

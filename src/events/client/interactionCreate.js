@@ -29,12 +29,21 @@ module.exports = {
           });
         }
       } else if (interaction.isButton()) {
+        //Get Buttons and Id
         const { buttons } = client;
         const { customId } = interaction;
-        const button = buttons.get(customId);
+
+        //Check for variable command values
+        let button;
+        if (customId.startsWith("vc-")) {
+          button = buttons.get(customId.split("_")[0]);
+        } else {
+          button = buttons.get(customId);
+        }
 
         if (!button) return new Error("There is no code for this button.");
 
+        //Execute button command from components/buttons
         try {
           await button.execute(interaction, client);
         } catch (err) {

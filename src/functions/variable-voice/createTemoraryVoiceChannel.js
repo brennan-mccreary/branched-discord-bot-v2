@@ -1,10 +1,4 @@
-const guild = require("../../schemas/guild");
-const Guild = require("../../schemas/guild");
-const {
-  MessageFlags,
-  ChannelType,
-  PermissionFlagsBits,
-} = require("discord.js");
+const { ChannelType, PermissionFlagsBits } = require("discord.js");
 
 module.exports = async (client) => {
   client.createTemporaryVoiceChannel = async (voiceState, client) => {
@@ -22,16 +16,35 @@ module.exports = async (client) => {
         parent: category,
         permissionOverwrites: [
           {
-            id: guild.roles.everyone.id,
-            allow: [PermissionFlagsBits.Connect],
+            id: guild.roles.everyone.id, // deny @everyone
+            allow: [
+              PermissionFlagsBits.Speak,
+              PermissionFlagsBits.UseVAD,
+              PermissionFlagsBits.Stream,
+              PermissionFlagsBits.ViewChannel
+            ],
+            deny: [
+              PermissionFlagsBits.Connect,
+              PermissionFlagsBits.SendMessages,
+              PermissionFlagsBits.UseEmbeddedActivities,
+              PermissionFlagsBits.ReadMessageHistory
+            ],
           },
           {
             id: user.id,
             allow: [
+              PermissionFlagsBits.ViewChannel,
               PermissionFlagsBits.Connect,
               PermissionFlagsBits.Speak,
-              PermissionFlagsBits.ManageChannels,
+              PermissionFlagsBits.Stream,
+              PermissionFlagsBits.MoveMembers,
+              PermissionFlagsBits.UseVAD,
+              PermissionFlagsBits.ReadMessageHistory,
+              PermissionFlagsBits.MuteMembers
             ],
+            deny: [
+              PermissionFlagsBits.CreateEvents
+            ]
           },
         ],
       });
@@ -43,6 +56,9 @@ module.exports = async (client) => {
 
       //Move the member into the new channel
       await member.voice.setChannel(channel);
+
+      //Invoke privacy control panel
+      client.channelPrivacyPrompt(channel, user)
     } catch (err) {
       console.error(err);
     }

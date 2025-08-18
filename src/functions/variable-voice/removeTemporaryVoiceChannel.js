@@ -1,10 +1,4 @@
-const guild = require("../../schemas/guild");
-const Guild = require("../../schemas/guild");
-const {
-  MessageFlags,
-  ChannelType,
-  PermissionFlagsBits,
-} = require("discord.js");
+const { ChannelType } = require("discord.js");
 
 module.exports = async (client) => {
   client.removeTemporaryVoiceChannel = async (voiceState, client) => {
